@@ -1,0 +1,23 @@
+{
+  "name": "employe-review-system",
+  "version": "1.0.0",
+  "description": " This application  allows employees to submit feedback toward each other’s performance",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nonuabi/Employee-Review-System-Node.js-App.git"
+  },
+  "author": "Abhishek Verma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nonuabi/Employee-Review-System-Node.js-App/issues"
+  },
+  "homepage": "https://github.com/nonuabi/Employee-Review-System-Node.js-App#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  }
+}
