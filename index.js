@@ -6,6 +6,9 @@ const port = process.env.PORT || 8080;
 // calling express
 const app = express();
 
+// static files
+app.use("/assets", express.static("./assets"));
+
 // EJS
 app.set("view engine", "ejs");
 app.set("views", "./views");
