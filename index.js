@@ -1,10 +1,13 @@
 const express = require("express");
-
+const connectDB = require("./config/mongoose");
 // port define
 const port = process.env.PORT || 8080;
 
 // calling express
 const app = express();
+
+// calling mongoose
+connectDB();
 
 // static files
 app.use("/assets", express.static("./assets"));
