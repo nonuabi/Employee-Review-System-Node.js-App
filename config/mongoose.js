@@ -1,7 +1,8 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
+
 // mongoDB atlas uri
-const URI =
-  "mongodb+srv://dbuser:dbuser@cluster0.tpe7h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const URI = process.env.URI;
 
 // connecting to mongoDB atlas
 const connectDB = async () => {
@@ -11,4 +12,5 @@ const connectDB = async () => {
   });
   console.log("Connected to DataBase :: MongoDB");
 };
+// export
 module.exports = connectDB;
