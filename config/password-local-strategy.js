@@ -26,7 +26,7 @@ passport.use(
 );
 
 // serializing the user to decide which key is to be kept in the cookies
-passport.serialization(function (user, done) {
+passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
 
