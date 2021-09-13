@@ -5,11 +5,19 @@ module.exports.home = function (req, res) {
 };
 
 module.exports.login = function (req, res) {
-  return res.render("login");
+  if (!req.isAuthenticated()) {
+    return res.render("login");
+  } else {
+    console.log("already Login");
+  }
+  return res.redirect("/");
 };
 
 module.exports.signup = function (req, res) {
-  return res.render("signup");
+  if (!req.isAuthenticated()) {
+    return res.render("signup");
+  }
+  return res.redirect("/");
 };
 
 // create new user
@@ -58,5 +66,6 @@ module.exports.createSession = function (req, res) {
 
 module.exports.deleteSession = function (req, res) {
   req.logout();
+  console.log("logout");
   return res.redirect("/");
 };
