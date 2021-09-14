@@ -5,8 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Employee Review System</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <%- include('_header')%>
+    <main>
+      <div>
+        <%for(let i of recipients){%>
+        <form action="/review/create-review/<%=i.id%>" method="GET">
+          <div class="form-floating">
+            <textarea
+              class="form-control"
+              placeholder="Leave a new Review here"
+              id="floatingTextarea2"
+              style="height: 100px"
+            ></textarea>
+            <label for="floatingTextarea2">New Review</label>
+          </div>
+          <div class="d-grid gap-2 col-6 mx-auto form_button">
+            <input class="btn btn-primary" type="submit" value="Submit" />
+          </div>
+        </form>
+      </div>
+      <%}%>
+    </main>
   </body>
 </html>

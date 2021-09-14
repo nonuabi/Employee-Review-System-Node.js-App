@@ -1,7 +1,24 @@
 const User = require("../model/user");
+const Review = require("../model/review");
 const uniqid = require("uniqid");
-module.exports.home = function (req, res) {
-  return res.render("home");
+module.exports.home = async function (req, res) {
+  if (!req.user) {
+    return res.redirect("/user/login");
+  }
+  let employee = await User.findById(req.user._id);
+  console.log("employee ::: ", employee);
+  let review = await Review.find({
+    to: req.user._id,
+  });
+  let recipients = [];
+  for (let i = 0; i < employee.to.length; i++) {
+    let temp = await User.findById(employee.to[i]);
+    recipients.push(temp);
+  }
+
+  return res.render("home", {
+    recipients,
+  });
 };
 
 module.exports.login = function (req, res) {
@@ -32,10 +49,11 @@ module.exports.create = async function (req, res) {
       let check_user = await User.findOne({ email: email });
       if (check_user) {
         console.log("Email id is already registred");
-        return res.redirect("/login");
+        return res.redirect("/user/login");
       } else {
+        const currentEmployees = await User.find({});
         const new_user = await User.create({
-          employeeID: uniqid(),
+          employeeID: currentEmployees.length + 12101000,
           name,
           email,
           password,
@@ -43,15 +61,15 @@ module.exports.create = async function (req, res) {
         });
         if (!new_user) {
           console.log("Error while creating ");
-          return res.redirect("/signup");
+          return res.redirect("/user/signup");
         } else {
           console.log("new User :: ", new_user);
         }
       }
-      return res.redirect("/login");
+      return res.redirect("/user/login");
     } else {
       console.log("Password && Confirm Password do not match");
-      return res.redirect("/signup");
+      return res.redirect("/user/signup");
     }
   } catch (err) {
     console.log("Error while creating new user :: ", err);
