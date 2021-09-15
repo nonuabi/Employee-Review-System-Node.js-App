@@ -45,17 +45,36 @@ module.exports.setReviewers = async function (req, res) {
       if (!reviewer) {
         return res.redirect("back");
       }
-
       let recipient = await User.findById(req.body.Recipient);
       if (!recipient) {
         return res.redirect("back");
       }
-
       reviewer.to.push(recipient);
       reviewer.save();
       recipient.from.push(reviewer);
       recipient.save();
       return res.redirect("back");
+    }
+  }
+};
+
+module.exports.newAdmin = async function (req, res) {
+  if (!req.isAuthenticated()) {
+    return res.redirect("/user/login");
+  }
+  if (req.user.isAdmin == true) {
+    let employee = await User.findById(req.body.newAdmin);
+
+    if (!employee) {
+      return res.redirect("back");
+    }
+    if (employee.isAdmin == true) {
+      return res.redirect("back");
+    }
+    if (employee.isAdmin == false) {
+      employee.isAdmin = true;
+      employee.save();
+      return res.redirect("/");
     }
   }
 };

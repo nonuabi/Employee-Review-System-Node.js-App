@@ -13,10 +13,10 @@ router.post(
   passport.checkAuthentication,
   adminController.setReviewers
 );
-// router.post(
-//   "/newAdmin",
-//   passport.checkAuthentication,
-//   admin_controller.newAdmin
-// );
+router.post(
+  "/newAdmin",
+  passport.checkAuthentication,
+  adminController.newAdmin
+);
 
 module.exports = router;

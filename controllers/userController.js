@@ -61,7 +61,7 @@ module.exports.create = async function (req, res) {
         const new_user = await User.create({
           employeeID: currentEmployees.length + 12101000,
           name,
-          isAdmin: true,
+          isAdmin: false,
           email,
           password,
           confirmPassword,
