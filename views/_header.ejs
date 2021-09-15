@@ -1,9 +1,15 @@
 <header>
-  <%if(locals.user && locals.user.isAdmin){%>
-  <a href="/user/signout" type="GET"> Signout</a>
-  <%}else {%>
-  <a href="/user/signup" type="GET">Signup</a>
-  <a href="/user/login" type="GET"> Login</a>
-  <%}%>
-  <a href="/admin/main" type="GET">Admin Page</a>
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid" id="link_container">
+      <span class="navbar-brand mb-0 h1">Employee Review System</span>
+      <%if(locals.user && !locals.user.isAdmin){%>
+      <a class="navbar-brand" href="/user/signout" type="GET"> Signout</a>
+      <%}else if(locals.user && locals.user.isAdmin) {%>
+      <a class="navbar-brand" href="/user/signup" type="GET">Signup</a>
+      <a href="/admin/main" type="GET">Admin Page</a>
+      <%}else {%>
+      <a class="navbar-brand" href="/user/login" type="GET"> Login</a>
+      <%}%>
+    </div>
+  </nav>
 </header>

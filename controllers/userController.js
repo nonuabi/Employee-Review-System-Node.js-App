@@ -2,39 +2,38 @@ const User = require("../model/user");
 const Review = require("../model/review");
 const uniqid = require("uniqid");
 module.exports.home = async function (req, res) {
-  return res.render("signup");
-  // if (!req.user) {
-  //   return res.redirect("/user/login");
-  // }
-  // let employee = await User.findById(req.user._id);
-  // let review = await Review.find({
-  //   to: req.user._id,
-  // });
-  // let recipients = [];
-  // for (let i = 0; i < employee.to.length; i++) {
-  //   let temp = await User.findById(employee.to[i]);
-  //   recipients.push(temp);
-  // }
-  // let reviews = [];
-  // for (let i = 0; i < review.length; i++) {
-  //   let temp = await User.findById(review[i].from);
-  //   console.log("review :", temp);
-  //   let currentReview = {
-  //     name: temp.name,
-  //     review: review[i].review,
-  //     updated: review[i].updatedAt,
-  //   };
-  //   reviews.push(currentReview);
-  // }
-  // return res.render("home", {
-  //   recipients: recipients,
-  //   reviews: reviews,
-  // });
+  if (!req.user) {
+    return res.redirect("/user/login");
+  }
+  let user = await User.findById(req.user._id);
+  let review = await Review.find({
+    to: req.user._id,
+  });
+  let recipients = [];
+  for (let i = 0; i < user.to.length; i++) {
+    let temp = await User.findById(user.to[i]);
+    recipients.push(temp);
+  }
+  let reviews = [];
+  for (let i = 0; i < review.length; i++) {
+    let temp = await User.findById(review[i].from);
+    console.log("review :", temp);
+    let currentReview = {
+      name: temp.name,
+      review: review[i].review,
+      updated: review[i].updatedAt,
+    };
+    reviews.push(currentReview);
+  }
+  return res.render("home", {
+    recipients: recipients,
+    reviews: reviews,
+  });
 };
 
 module.exports.login = async function (req, res) {
   if (!req.isAuthenticated()) {
-    return res.redirect("/user/login");
+    return res.render("login");
   }
   console.log("you'r already logged In");
   return res.redirect("/");
@@ -42,7 +41,7 @@ module.exports.login = async function (req, res) {
 
 module.exports.signup = function (req, res) {
   if (!req.isAuthenticated()) {
-    return res.redirect("/user/signup");
+    return res.render("signup");
   }
   console.log("You are already logged, So you can't create account now");
   return res.redirect("/");

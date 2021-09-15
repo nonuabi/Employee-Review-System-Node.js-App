@@ -55,6 +55,7 @@ passport.checkAuthentication = function (req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   } else {
+    console.log("check req is Auth :: ", req);
     return res.redirect("/user/login");
   }
   //if the user is not sign in
@@ -64,7 +65,6 @@ passport.setAuthenticatedUser = function (req, res, next) {
   console.log("hello set Auth", ++asdf);
   if (req.isAuthenticated()) {
     res.locals.user = req.user;
-    console.log("res.locals ", res.locals);
   }
   next();
 };
