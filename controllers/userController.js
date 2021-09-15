@@ -2,12 +2,10 @@ const User = require("../model/user");
 const Review = require("../model/review");
 const uniqid = require("uniqid");
 module.exports.home = async function (req, res) {
-  console.log("req.user  :: ", req.user);
   if (!req.user) {
     return res.redirect("/user/login");
   }
   let employee = await User.findById(req.user._id);
-  console.log("employee ::: ", employee);
   let review = await Review.find({
     to: req.user._id,
   });
@@ -35,29 +33,25 @@ module.exports.home = async function (req, res) {
   });
 };
 
-module.exports.login = function (req, res) {
+module.exports.login = async function (req, res) {
   if (!req.isAuthenticated()) {
-    return res.render("login");
-  } else {
-    console.log("already Login");
+    return res.redirect("/user/login");
   }
+  console.log("you'r already logged In");
   return res.redirect("/");
 };
 
 module.exports.signup = function (req, res) {
   if (!req.isAuthenticated()) {
-    return res.render("signup");
+    return res.redirect("/user/signup");
   }
+  console.log("You are already logged, So you can't create account now");
   return res.redirect("/");
 };
 
 // create new user
 module.exports.create = async function (req, res) {
-  console.log("create user");
   const { name, email, password, confirmPassword } = req.body;
-  console.log("email :: ", email);
-  console.log("password :: ", password);
-  console.log("confirmPassword :: ", confirmPassword);
   try {
     if (password === confirmPassword) {
       let check_user = await User.findOne({ email: email });
@@ -69,6 +63,7 @@ module.exports.create = async function (req, res) {
         const new_user = await User.create({
           employeeID: currentEmployees.length + 12101000,
           name,
+          isAdmin: false,
           email,
           password,
           confirmPassword,
@@ -76,8 +71,6 @@ module.exports.create = async function (req, res) {
         if (!new_user) {
           console.log("Error while creating ");
           return res.redirect("/user/signup");
-        } else {
-          console.log("new User :: ", new_user);
         }
       }
       return res.redirect("/user/login");
@@ -93,6 +86,7 @@ module.exports.create = async function (req, res) {
 
 // Sign In and create a session for the user
 module.exports.createSession = function (req, res) {
+  console.log("loggin Successfully");
   return res.redirect("/");
 };
 

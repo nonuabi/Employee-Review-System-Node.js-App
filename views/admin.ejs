@@ -1,0 +1,46 @@
+<section>
+  <h1>Admin Page</h1>
+  <div id="set-reviewers">
+    <p>Set Reviewers</p>
+    <div>
+      <form id="set-reviewers-form" method="POST" action="/admin/setReviewers">
+        <div id="recipient">
+          <p>Recipient</p>
+          <select name="Recipient">
+            <% for(let i=0;i < employeeList.length;i++){ %>
+            <option value="<%=employeeList[i].id%>">
+              <%=employeeList[i].name %>
+            </option>
+            <%}%>
+          </select>
+        </div>
+        <div id="reviewer">
+          <p>Reviewer</p>
+          <select name="Reviewer">
+            <% for(let i=0;i < employeeList.length;i++){ %>
+            <option value="<%=employeeList[i].id%>">
+              <%=employeeList[i].name %>
+            </option>
+            <%}%>
+          </select>
+        </div>
+        <div id="set-reviewers-form-submit">
+          <button type="submit">Done</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="set-admin">
+    <p>Assign admin to employees</p>
+    <form method="POST" action="/admin/newAdmin">
+      <select name="newAdmin">
+        <% for(let i=0;i < employeeList.length;i++){ %>
+        <option value="<%=employeeList[i].id%>">
+          <%=employeeList[i].name %>
+        </option>
+        <%}%>
+      </select>
+      <button type="submit">Add</button>
+    </form>
+  </div>
+</section>

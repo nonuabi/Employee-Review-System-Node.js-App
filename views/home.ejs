@@ -14,25 +14,39 @@
   </head>
   <body>
     <%- include('_header')%>
+   <%- include('_header') %>
     <main>
-      <div>
-        <%for(let i of recipients){%>
-        <form action="/review/create-review/<%=i.id%>" method="GET">
-          <div class="form-floating">
-            <textarea
-              class="form-control"
-              placeholder="Leave a new Review here"
-              id="floatingTextarea2"
-              style="height: 100px"
-            ></textarea>
-            <label for="floatingTextarea2">New Review</label>
-          </div>
-          <div class="d-grid gap-2 col-6 mx-auto form_button">
-            <input class="btn btn-primary" type="submit" value="Submit" />
-          </div>
-        </form>
+      <div id="left-section">
+        <div class="Section-heading">
+          <p>To Review</p>
+        </div>
+
+        <% for(r of recipients){ %>
+        <div class="available-recipients">
+          <form action="/reviews/newReview/<%=r.id%>" method="GET">
+            <p>To: <%=r.name%></p>
+            <div class="new-review-block">
+              <textarea name="newReview" rows="5"></textarea>
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+        <%}%>
       </div>
-      <%}%>
+      <div id="right-section">
+        <div class="Section-heading">
+          <p>My Reviews</p>
+        </div>
+        <% for (r of reviews){%>
+        <div class="my-reviews">
+          <p>From: <%=r.name%></p>
+          <div>
+            <p><%=r.review%></p>
+          </div>
+          <p>Updated At: <%=r.updated%></p>
+        </div>
+        <%}%>
+      </div>
     </main>
   </body>
 </html>
