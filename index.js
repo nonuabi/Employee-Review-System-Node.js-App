@@ -39,6 +39,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(passport.setAuthenticatedUser);
 
 // router path
 app.use("/", require("./router"));

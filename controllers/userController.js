@@ -2,6 +2,7 @@ const User = require("../model/user");
 const Review = require("../model/review");
 const uniqid = require("uniqid");
 module.exports.home = async function (req, res) {
+  console.log("req.user  :: ", req.user);
   if (!req.user) {
     return res.redirect("/user/login");
   }
@@ -16,8 +17,21 @@ module.exports.home = async function (req, res) {
     recipients.push(temp);
   }
 
+  let reviews = [];
+  for (let i = 0; i < review.length; i++) {
+    let temp = await User.findById(review[i].from);
+    console.log("review :", temp);
+    let currentReview = {
+      name: temp.name,
+      review: review[i].review,
+      updated: review[i].updatedAt,
+    };
+    reviews.push(currentReview);
+  }
+
   return res.render("home", {
-    recipients,
+    recipients: recipients,
+    reviews: reviews,
   });
 };
 
