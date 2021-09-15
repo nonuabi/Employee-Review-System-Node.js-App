@@ -8,7 +8,7 @@ const passport = require("passport");
 const passportLocal = require("./config/password-local-strategy");
 
 // port define
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8000;
 
 // calling express
 const app = express();

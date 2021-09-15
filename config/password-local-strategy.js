@@ -35,12 +35,12 @@ passport.use(
 
 // serializing the user to decide which key is to be kept in the cookies
 passport.serializeUser(function (user, done) {
-  done(null, user._id.toString());
+  done(null, user.id.toString());
 });
 
 // deserializing the user from the key in the cookies
 passport.deserializeUser(function (id, done) {
-  User.findById({ _id: id }, function (err, user) {
+  User.findById(id, function (err, user) {
     if (err) {
       console.log("Error in finding User : passport : ", err);
       return done(err);
