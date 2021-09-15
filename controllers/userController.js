@@ -2,7 +2,7 @@ const User = require("../model/user");
 const Review = require("../model/review");
 const uniqid = require("uniqid");
 module.exports.home = async function (req, res) {
-  return res.render("login");
+  return res.render("signup");
   // if (!req.user) {
   //   return res.redirect("/user/login");
   // }
