@@ -8,11 +8,11 @@ router.get(
   passport.checkAuthentication,
   adminController.adminPage
 );
-// router.post(
-//   "/setReviewers",
-//   passport.checkAuthentication,
-//   admin_controller.setReviewers
-// );
+router.post(
+  "/setReviewers",
+  passport.checkAuthentication,
+  adminController.setReviewers
+);
 // router.post(
 //   "/newAdmin",
 //   passport.checkAuthentication,
