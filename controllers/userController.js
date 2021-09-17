@@ -59,10 +59,11 @@ module.exports.create = async function (req, res) {
     } else {
       const new_user = await User.create({
         name,
-        isAdmin: true,
+        isAdmin: false,
         email,
         password,
       });
+      await new_user.save();
       if (!new_user) {
         console.log("Error while creating ");
         return res.redirect("/user/signup");

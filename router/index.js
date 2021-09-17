@@ -5,5 +5,5 @@ const userController = require("../controllers/userController");
 router.get("/", passport.checkAuthentication, userController.home);
 router.use("/admin", require("./admin"));
 router.use("/user", require("./user"));
-// router.use("/review", require("./review"));
+router.use("/reviews", require("./review"));
 module.exports = router;
