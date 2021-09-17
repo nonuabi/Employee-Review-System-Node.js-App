@@ -21,19 +21,23 @@
         <div class="Section-heading">
           <p>To Review</p>
         </div>
-
-        <% for(r of recipients){ %>
-        <div class="available-recipients">
-          <form action="/reviews/newReview/<%=r.id%>" method="GET">
-            <p>To: <%=r.name%></p>
-            <div class="new-review-block">
-              <textarea name="newReview" rows="5"></textarea>
-              <button type="submit">Submit</button>
-            </div>
-          </form>
+        <%if(recipients){%>
+        <div>
+          <% for(let r of recipients){ %>
+          <div class="available-recipients">
+            <form action="/reviews/newReview/<%=r.id%>" method="GET">
+              <p>To: <%=r.name%></p>
+              <div class="new-review-block">
+                <textarea name="newReview" rows="5"></textarea>
+                <button type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+          <%}%>
         </div>
         <%}%>
       </div>
+
       <div id="right-section">
         <div class="Section-heading">
           <p>My Reviews</p>

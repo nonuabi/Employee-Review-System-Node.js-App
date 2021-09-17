@@ -50,35 +50,28 @@ module.exports.signup = function (req, res) {
 // create new user
 module.exports.create = async function (req, res) {
   const { name, email, password, confirmPassword } = req.body;
-  try {
-    if (password === confirmPassword) {
-      let check_user = await User.findOne({ email: email });
-      if (check_user) {
-        console.log("Email id is already registred");
-        return res.redirect("/user/login");
-      } else {
-        const currentEmployees = await User.find({});
-        const new_user = await User.create({
-          employeeID: currentEmployees.length + 12101000,
-          name,
-          isAdmin: false,
-          email,
-          password,
-          confirmPassword,
-        });
-        if (!new_user) {
-          console.log("Error while creating ");
-          return res.redirect("/user/signup");
-        }
-      }
+
+  if (password === confirmPassword) {
+    let check_user = await User.findOne({ email: email });
+    if (check_user) {
+      console.log("Email id is already registred");
       return res.redirect("/user/login");
     } else {
-      console.log("Password && Confirm Password do not match");
-      return res.redirect("/user/signup");
+      const new_user = await User.create({
+        name,
+        isAdmin: true,
+        email,
+        password,
+      });
+      if (!new_user) {
+        console.log("Error while creating ");
+        return res.redirect("/user/signup");
+      }
     }
-  } catch (err) {
-    console.log("Error while creating new user :: ", err);
-    return res.redirect("/home");
+    return res.redirect("/user/login");
+  } else {
+    console.log("Password && Confirm Password do not match");
+    return res.redirect("/user/signup");
   }
 };
 

@@ -22,7 +22,7 @@ passport.use(
             console.log("Wrong Username");
             return done(null, false, { message: "User Not Found!!" });
           }
-          if (user.password != password) {
+          if (user.password !== password) {
             console.log("Wrong Password");
             return done(null, false, { message: "Password not Valid" });
           }
