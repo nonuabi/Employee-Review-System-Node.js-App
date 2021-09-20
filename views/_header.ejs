@@ -1,13 +1,15 @@
 <header>
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid" id="link_container">
-      <span class="navbar-brand mb-0 h1">Employee Review System</span>
+      <span class="navbar-brand mb-0 h1">
+        <a class="navbar-brand" href="/" type="GET">Employee Review System</a>
+      </span>
       <%if(locals.user && !locals.user.isAdmin){%>
       <a class="navbar-brand" href="/user/signout" type="GET"> Signout</a>
       <%}else if(locals.user && locals.user.isAdmin) {%>
       <div>
         <a class="navbar-brand" href="/admin/admin-page" type="GET"
-          >Admin Page</a
+          >Assign Work</a
         >
         <a class="navbar-brand" href="/user/signout" type="GET"> Signout</a>
       </div>

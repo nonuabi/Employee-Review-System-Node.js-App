@@ -78,3 +78,18 @@ module.exports.newAdmin = async function (req, res) {
     }
   }
 };
+
+module.exports.viewEmployees = async function (req, res) {
+  if (req.isAuthenticated()) {
+    if (req.user.isAdmin) {
+      let employees = await User.find({});
+      console.log(employees);
+    } else {
+      console.log("user is not authorized check list of Employees ");
+      return res.redirect("/");
+    }
+  } else {
+    console.log("user not authenticated");
+    return res.redirect("/user/login");
+  }
+};
