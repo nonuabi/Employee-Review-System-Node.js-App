@@ -84,6 +84,11 @@ module.exports.viewEmployees = async function (req, res) {
     if (req.user.isAdmin) {
       let employees = await User.find({});
       console.log(employees);
+      if (employees) {
+        return res.render("employees", {
+          employees: employees,
+        });
+      }
     } else {
       console.log("user is not authorized check list of Employees ");
       return res.redirect("/");

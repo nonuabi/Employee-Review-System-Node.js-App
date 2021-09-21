@@ -18,6 +18,10 @@ router.post(
   passport.checkAuthentication,
   adminController.newAdmin
 );
-router.post("/view-employees", adminController.viewEmployees);
+router.get(
+  "/view-employees",
+  passport.checkAuthentication,
+  adminController.viewEmployees
+);
 
 module.exports = router;
