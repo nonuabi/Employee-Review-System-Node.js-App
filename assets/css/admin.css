@@ -1,0 +1,26 @@
+.work_title,
+.review_title,
+.assignAdmin_title {
+  text-align: center;
+}
+.setWork_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3rem;
+}
+.setReview_container {
+  width: 60%;
+  padding: 1rem 0.5rem;
+  border: 1px solid #00000026;
+  margin-left: 0.5rem;
+}
+.assignAdmin_container {
+  width: 30%;
+  padding: 1rem 0.5rem;
+  border: 1px solid #00000026;
+  margin-right: 0.5rem;
+}
+/* .review_title {
+  text-align: center;
+} */

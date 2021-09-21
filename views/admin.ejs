@@ -11,65 +11,81 @@
       integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="../assets/css/admin.css" />
   </head>
   <body>
     <%- include('_header')%>
     <div>
-      <div>
+      <div class="work_title">
         <h1 class="display-1">Assign Recipient and Reviewer</h1>
       </div>
-      <div ">
-        <p>Set Reviewers</p>
-        <div>
-          <form
-            method="POST"
-            action="/admin/setReviewers"
-          >
-            <div>
-              <p>Recipient</p>
-              <select  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="Recipient">
-                 <option selected disabled> Select Recipient</option>
-                <% for(let i=0;i < employeeList.length;i++){ %>
-                <option value="<%=employeeList[i].id%>">
-                  <%= employeeList[i].name %>
-                </option>
-                <%}%>
-              </select>
-            </div>
-            <div >
-              <p>Reviewer</p>
-              <select  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"name="Reviewer">
-                 <option selected disabled>Select Reviewer</option>
-                
-                <% for(let i=0;i < employeeList.length;i++){ %>
-                <option value="<%=employeeList[i].id%>">
-                  <%=employeeList[i].name %>
-                </option>
-                <%}%>
-              </select>
-            </div>
-            <div class="d-grid gap-2 col-6 mx-auto form_button">
-            <input class="btn btn-dark" type="submit" value="Submit" />
+      <div class="setWork_container">
+        <div class="setReview_container">
+          <div class="review_title">
+            <h5>Set Reviewers</h5>
           </div>
+          <div>
+            <form method="POST" action="/admin/setReviewers">
+              <div>
+                <h6>Recipient</h6>
+                <select
+                  class="form-select form-select-lg mb-3"
+                  aria-label=".form-select-lg example"
+                  name="Recipient"
+                >
+                  <option selected disabled>Select Recipient</option>
+                  <% for(let i=0;i < employeeList.length;i++){ %>
+                  <option value="<%=employeeList[i].id%>">
+                    <%= employeeList[i].name %>
+                  </option>
+                  <%}%>
+                </select>
+              </div>
+              <div>
+                <h6>Reviewer</h6>
+                <select
+                  class="form-select form-select-lg mb-3"
+                  aria-label=".form-select-lg example"
+                  name="Reviewer"
+                >
+                  <option selected disabled>Select Reviewer</option>
+
+                  <% for(let i=0;i < employeeList.length;i++){ %>
+                  <option value="<%=employeeList[i].id%>">
+                    <%=employeeList[i].name %>
+                  </option>
+                  <%}%>
+                </select>
+              </div>
+              <div class="d-grid gap-2 col-6 mx-auto form_button">
+                <input class="btn btn-dark" type="submit" value="Submit" />
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="assignAdmin_container">
+          <div class="assignAdmin_title">
+            <h5>Assign admin to employees</h5>
+          </div>
+          <form method="POST" action="/admin/newAdmin">
+            <select
+              class="form-select form-select-lg mb-3"
+              aria-label=".form-select-lg example"
+              name="newAdmin"
+            >
+              <option selected disabled>Click here...</option>
+              <% for(let i=0;i < employeeList.length;i++){ %>
+
+              <option value="<%=employeeList[i].id%>">
+                <%=employeeList[i].name %>
+              </option>
+              <%}%>
+            </select>
+            <div class="d-grid gap-2 col-6 mx-auto form_button">
+              <input class="btn btn-dark" type="submit" value="Submit" />
+            </div>
           </form>
         </div>
-      </div>
-      <div >
-        <p>Assign admin to employees</p>
-        <form method="POST" action="/admin/newAdmin">
-          <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="newAdmin">
-            <option selected disabled>Click here...</option>
-            <% for(let i=0;i < employeeList.length;i++){ %>
-
-            <option value="<%=employeeList[i].id%>">
-              <%=employeeList[i].name %>
-            </option>
-            <%}%>
-          </select>
-          <div class="d-grid gap-2 col-6 mx-auto form_button">
-            <input class="btn btn-dark" type="submit" value="Submit" />
-          </div>
-        </form>
       </div>
     </div>
   </body>
