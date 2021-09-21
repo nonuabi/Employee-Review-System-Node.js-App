@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// review Schema
 const reviewSchema = mongoose.Schema(
   {
     review: {

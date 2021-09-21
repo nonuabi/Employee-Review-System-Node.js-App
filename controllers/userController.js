@@ -1,6 +1,8 @@
 const User = require("../model/user");
 const Review = require("../model/review");
 const uniqid = require("uniqid");
+
+// get user details
 module.exports.home = async function (req, res) {
   if (!req.user) {
     return res.redirect("/user/login");

@@ -1,5 +1,6 @@
 const User = require("../model/user");
 
+// admin page controller
 module.exports.adminPage = async function (req, res) {
   if (!req.isAuthenticated()) {
     return res.redirect("/employees/signin");
@@ -30,6 +31,7 @@ module.exports.adminPage = async function (req, res) {
   }
 };
 
+// set reviews for employess
 module.exports.setReviewers = async function (req, res) {
   if (!req.isAuthenticated()) {
     return res.redirect("/user/login");
@@ -58,6 +60,7 @@ module.exports.setReviewers = async function (req, res) {
   }
 };
 
+// make new admin
 module.exports.newAdmin = async function (req, res) {
   if (!req.isAuthenticated()) {
     return res.redirect("/user/login");
@@ -80,6 +83,7 @@ module.exports.newAdmin = async function (req, res) {
   }
 };
 
+// view employess
 module.exports.viewEmployees = async function (req, res) {
   if (req.isAuthenticated()) {
     if (req.user.isAdmin) {
@@ -100,6 +104,7 @@ module.exports.viewEmployees = async function (req, res) {
   }
 };
 
+// delete employee
 module.exports.deleteEmployee = async function (req, res) {
   console.log("delete Request :: ", req.params);
   if (req.isAuthenticated()) {

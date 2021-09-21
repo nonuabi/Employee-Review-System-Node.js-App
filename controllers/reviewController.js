@@ -1,5 +1,7 @@
 const User = require("../model/user");
 const Review = require("../model/review");
+
+// add new review
 module.exports.newReview = async function (req, res) {
   console.log("new Review Controller :: ", req);
   let recipient = await User.findById(req.params.id);
