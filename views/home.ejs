@@ -17,19 +17,29 @@
   <body>
     <%- include('_header') %>
     <main class="home_container">
-      <div id="left-section">
-        <div class="Section-heading">
-          <p>To Review</p>
+      <div id="left_section">
+        <div class="section_heading">
+          <h5>To Review</h5>
         </div>
         <%if(recipients){%>
         <div>
           <% for(let r of recipients){ %>
           <div class="available-recipients">
             <form action="/reviews/newReview/<%=r.id%>" method="GET">
-              <p>To: <%=r.name%></p>
-              <div class="new-review-block">
-                <textarea name="newReview" rows="5"></textarea>
-                <button type="submit">Submit</button>
+              <p>To: <b><%=r.name%></b></p>
+              <div class="form-floating">
+                <textarea
+                  class="form-control"
+                  placeholder="Leave a review here"
+                  id="floatingTextarea2"
+                  style="height: 100px"
+                  name="newReview"
+                  rows="5"
+                ></textarea>
+                <label for="floatingTextarea2">Review</label>
+              </div>
+              <div class="d-grid gap-2 col-6 mt-3 mx-auto form_button">
+                <button class="btn btn-dark" type="submit">Submit</button>
               </div>
             </form>
           </div>
@@ -38,17 +48,21 @@
         <%}%>
       </div>
 
-      <div id="right-section">
-        <div class="Section-heading">
-          <p>My Reviews</p>
+      <div id="right_section">
+        <div class="section_heading">
+          <h5>My Reviews</h5>
         </div>
         <% for (r of reviews){%>
-        <div class="my-reviews">
-          <p>From: <%=r.name%></p>
+        <div class="reviews_container">
           <div>
-            <p><%=r.review%></p>
+            <p>From: <b><%=r.name%></b></p>
           </div>
-          <p>Updated At: <%=r.updated%></p>
+          <div>
+            <p>message : <%=r.review%></p>
+          </div>
+          <div>
+            <p>Updated At: <%=r.updated%></p>
+          </div>
         </div>
         <%}%>
       </div>

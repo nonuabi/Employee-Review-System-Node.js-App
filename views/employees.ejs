@@ -22,6 +22,7 @@
         <h5 class="card_title">Name : <%=employees[i].name %></h5>
         <p>Email : <%=employees[i].email %></p>
         <p>Password : <%=employees[i].password %></p>
+        <p>Admin : <%=employees[i].isAdmin %></p>
         <a
           href="/admin/delete-employee/<%=employees[i]._id%>"
           class="btn btn-danger"
