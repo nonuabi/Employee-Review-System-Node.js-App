@@ -28,7 +28,7 @@
             <div>
               <p>Recipient</p>
               <select  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="Recipient">
-                 <option selected>Select Recipient</option>
+                 <option selected disabled> Select Recipient</option>
                 <% for(let i=0;i < employeeList.length;i++){ %>
                 <option value="<%=employeeList[i].id%>">
                   <%= employeeList[i].name %>
@@ -39,7 +39,7 @@
             <div >
               <p>Reviewer</p>
               <select  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"name="Reviewer">
-                 <option selected>Select Reviewer</option>
+                 <option selected disabled>Select Reviewer</option>
                 
                 <% for(let i=0;i < employeeList.length;i++){ %>
                 <option value="<%=employeeList[i].id%>">
@@ -58,8 +58,8 @@
         <p>Assign admin to employees</p>
         <form method="POST" action="/admin/newAdmin">
           <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="newAdmin">
+            <option selected disabled>Click here...</option>
             <% for(let i=0;i < employeeList.length;i++){ %>
-                 <option selected>Click here...</option>
 
             <option value="<%=employeeList[i].id%>">
               <%=employeeList[i].name %>

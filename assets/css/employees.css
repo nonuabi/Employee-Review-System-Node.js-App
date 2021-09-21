@@ -1,0 +1,12 @@
+.card_container {
+  display: flex;
+  flex-direction: column;
+}
+.card_body {
+  height: 60px;
+  border: 1px solid #d1cdcdcc;
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+  padding: 0.5rem 0.2rem 0.5rem 0.2rem;
+}

@@ -23,5 +23,10 @@ router.get(
   passport.checkAuthentication,
   adminController.viewEmployees
 );
+router.get(
+  "/delete-employee/:id",
+  passport.checkAuthentication,
+  adminController.deleteEmployee
+);
 
 module.exports = router;

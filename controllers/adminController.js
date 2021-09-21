@@ -74,7 +74,8 @@ module.exports.newAdmin = async function (req, res) {
     if (employee.isAdmin == false) {
       employee.isAdmin = true;
       employee.save();
-      return res.redirect("/");
+
+      return res.redirect("/admin/admin-page");
     }
   }
 };
@@ -96,5 +97,15 @@ module.exports.viewEmployees = async function (req, res) {
   } else {
     console.log("user not authenticated");
     return res.redirect("/user/login");
+  }
+};
+
+module.exports.deleteEmployee = async function (req, res) {
+  console.log("delete Request :: ", req.params);
+  if (req.isAuthenticated()) {
+    if (req.user.isAdmin) {
+      await User.deleteOne({ _id: req.params.id });
+      return res.redirect("/admin/view-employees");
+    }
   }
 };

@@ -11,15 +11,25 @@
       integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="../assets/css/employees.css" />
   </head>
   <body>
     <%- include('_header')%>
-
-    <div>
+    <div class="card_container">
       <% for(let i=0;i < employees.length;i++){ %>
 
-      <p><%=employees[i].name %></p>
-      <a href="admin/delete-employee/<%employees[i]._id%>">Delete</a>
+      <div class="card_body">
+        <h5 class="card_title">Name : <%=employees[i].name %></h5>
+        <p>Email : <%=employees[i].email %></p>
+        <p>Password : <%=employees[i].password %></p>
+        <a
+          href="/admin/delete-employee/<%=employees[i]._id%>"
+          class="btn btn-danger"
+          type="DEL"
+          >Delete</a
+        >
+      </div>
+
       <%}%>
     </div>
   </body>
